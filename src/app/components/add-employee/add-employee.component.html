@@ -1,0 +1,55 @@
+<div class="header">
+    <a routerLink="/" class="logo">Add Employee Details</a>
+</div>
+
+<div class="form-container">
+    <form [formGroup]="employeeForm" (ngSubmit)="addEmployee()">
+        <mat-form-field class="form-field full-width">
+            <mat-label>Employee Name</mat-label>
+            <input matInput formControlName="name" />
+        </mat-form-field>
+
+        <mat-form-field class="form-field full-width">
+            <mat-label>Employee Role</mat-label>
+            <mat-select formControlName="role">
+                <mat-option *ngFor="let role of employeeRoles;" [value]="role">{{role}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+            <mat-label>Start Date</mat-label>
+            <input matInput [matDatepicker]="fromPicker" readonly (dateChange)="dateSelectionChange()"
+                formControlName="startDate" />
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="fromPicker"></mat-datepicker-toggle>
+            <mat-datepicker #fromPicker [calendarHeaderComponent]="customStartHeader">
+                <mat-datepicker-actions>
+                    <button mat-button matDatepickerCancel>Cancel</button>
+                    <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                </mat-datepicker-actions>
+            </mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+            <mat-label>End Date</mat-label>
+            <input matInput formControlName="endDate" [matDatepicker]="toPicker" [matDatepickerFilter]="endDateFilter"
+                readonly (dateChange)="dateSelectionChange()" />
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="toPicker"></mat-datepicker-toggle>
+            <mat-datepicker #toPicker [calendarHeaderComponent]="customEndHeader">
+                <mat-datepicker-actions>
+                    <button mat-button matDatepickerCancel>Cancel</button>
+                    <button *ngIf="!noDateSelected" mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                    <button *ngIf="noDateSelected" mat-raised-button color="primary"
+                        (click)="closeDatePicker(toPicker)">Apply</button>
+                </mat-datepicker-actions>
+            </mat-datepicker>
+        </mat-form-field>
+
+        <div class="button-row">
+            <button mat-flat-button color="warn" routerLink="/" type="button">Cancel</button>
+            <button mat-flat-button color="primary" [disabled]="employeeForm.invalid || employeeForm.pristine"
+                type="submit">Save</button>
+        </div>
+    </form>
+</div>

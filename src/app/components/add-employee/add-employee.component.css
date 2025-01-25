@@ -1,0 +1,77 @@
+:host {
+    display: block;
+    padding: 16px;
+    font-family: Arial, sans-serif;
+}
+
+.header {
+    background-color: #3f51b5;
+    padding: 16px;
+    text-align: center;
+}
+
+.header .logo {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 16px;
+    background: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.form-field {
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.button-row {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.button-row button {
+    min-width: 120px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header .logo {
+        font-size: 20px;
+    }
+
+    .form-container {
+        padding: 12px;
+    }
+
+    .button-row {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .button-row button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .header .logo {
+        font-size: 18px;
+    }
+
+    .form-container {
+        padding: 8px;
+    }
+}
